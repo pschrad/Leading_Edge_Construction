@@ -1,0 +1,32 @@
+---
+import BaseHead from '../../components/BaseHead.astro';
+import { getCollection } from 'astro:content';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+
+const services = (await getCollection('services'))
+  .sort((a,b) => (a.data.order ?? 0) - (b.data.order ?? 0));
+---
+<html lang="en">
+  <head>
+    <BaseHead title="Services | Your Brand" />
+  </head>
+  <body>
+    <Header/>
+    <main class="container">
+      <h1>Services</h1>
+      <ul class="grid md:grid-cols-2 gap-6">
+        {services.map((s) => (
+          <li class="card">
+            <a href={`/services/${s.slug}`}>
+              {s.data.heroImage && <img src={s.data.heroImage} alt={s.data.title} />}
+              <h2 class="mt-3 text-xl font-semibold">{s.data.title}</h2>
+              {s.data.excerpt && <p class="text-sm opacity-80">{s.data.excerpt}</p>}
+            </a>
+          </li>
+        ))}
+      </ul>
+    </main>
+    <Footer/>
+  </body>
+</html>
