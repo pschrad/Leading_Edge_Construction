@@ -3,6 +3,8 @@ import BaseHead from '../components/BaseHead.astro';
 import Footer from '../components/Footer.astro';
 import Header from '../components/Header.astro';
 import { SITE_DESCRIPTION, SITE_TITLE } from '../consts';
+import heroImage from '../assets/blog-placeholder-1.jpg';
+import projectImage from '../assets/blog-placeholder-2.jpg';
 ---
 
 <!doctype html>
@@ -12,38 +14,536 @@ import { SITE_DESCRIPTION, SITE_TITLE } from '../consts';
 	</head>
 	<body>
 		<Header />
-		<main>
-			<h1>🧑‍🚀 Hello, Astronaut!</h1>
-			<p>
-				Welcome to the official <a href="https://astro.build/">Astro</a> blog starter template. This
-				template serves as a lightweight, minimally-styled starting point for anyone looking to build
-				a personal website, blog, or portfolio with Astro.
-			</p>
-			<p>
-				This template comes with a few integrations already configured in your
-				<code>astro.config.mjs</code> file. You can customize your setup with
-				<a href="https://astro.build/integrations">Astro Integrations</a> to add tools like Tailwind,
-				React, or Vue to your project.
-			</p>
-			<p>Here are a few ideas on how to get started with the template:</p>
-			<ul>
-				<li>Edit this page in <code>src/pages/index.astro</code></li>
-				<li>Edit the site header items in <code>src/components/Header.astro</code></li>
-				<li>Add your name to the footer in <code>src/components/Footer.astro</code></li>
-				<li>Check out the included blog posts in <code>src/content/blog/</code></li>
-				<li>Customize the blog post page layout in <code>src/layouts/BlogPost.astro</code></li>
-			</ul>
-			<p>
-				Have fun! If you get stuck, remember to
-				<a href="https://docs.astro.build/">read the docs</a>
-				or <a href="https://astro.build/chat">join us on Discord</a> to ask questions.
-			</p>
-			<p>
-				Looking for a blog template with a bit more personality? Check out
-				<a href="https://github.com/Charca/astro-blog-template">astro-blog-template</a>
-				by <a href="https://twitter.com/Charca">Maxi Ferreira</a>.
-			</p>
+		<main class="home">
+			<section class="hero">
+				<div class="hero__inner">
+					<div class="hero__content">
+						<p class="eyebrow">Central Florida luxury outdoor living</p>
+						<h1>Designing resort-inspired pools and backyard escapes</h1>
+						<p class="hero__subtitle">
+							Leading Edge Construction partners with discerning homeowners to craft immersive outdoor
+								retreats—balancing architecture, engineering, and hospitality-level experiences.
+						</p>
+						<div class="hero__actions">
+							<a class="button button--primary" href="/services/pools-and-spas">Plan your oasis</a>
+							<a class="button button--ghost" href="/portfolio">View portfolio</a>
+						</div>
+						<dl class="hero__metrics">
+							<div>
+								<dt>200+</dt>
+								<dd>Custom environments delivered</dd>
+							</div>
+							<div>
+								<dt>18 yrs</dt>
+								<dd>Design-build excellence</dd>
+							</div>
+							<div>
+								<dt>98%</dt>
+								<dd>Client satisfaction rating</dd>
+							</div>
+						</dl>
+					</div>
+					<aside class="hero__card">
+						<img src={heroImage} alt="Modern pool and spa at sunset" loading="lazy" />
+						<div class="hero__card-body">
+							<h2>Concierge design & build</h2>
+							<p>
+								Dedicated project leads guide every phase—from feasibility studies and permitting to
+								sculpted finishes and lighting automation.
+							</p>
+							<ul>
+								<li>Architectural master planning</li>
+								<li>Luxury pools, spas & water features</li>
+								<li>Outdoor kitchens & living zones</li>
+							</ul>
+						</div>
+					</aside>
+				</div>
+			</section>
+
+			<section class="credibility">
+				<div class="wrap">
+					<p class="eyebrow">Trusted by families across Orange, Seminole & Volusia counties</p>
+					<ul class="credibility__list">
+						<li>Lake Mary</li>
+						<li>Winter Park</li>
+						<li>Ormond Beach</li>
+						<li>Daytona Shores</li>
+						<li>Windermere</li>
+					</ul>
+				</div>
+			</section>
+
+			<section class="services" id="services">
+				<div class="wrap">
+					<div class="section-header">
+						<p class="eyebrow">Signature services</p>
+						<h2>Everything you need to shape your private oasis</h2>
+						<p>
+							We tailor each project to your property, lifestyle, and timeline—combining imaginative
+								design with construction precision and concierge-level communication.
+						</p>
+					</div>
+					<div class="services__grid">
+						<article class="service-card">
+							<h3>Custom pools & spas</h3>
+							<p>
+								Vanishing edges, baja shelves, glass tile spas, and statement lighting curated to match
+								your architecture.
+							</p>
+							<a class="link-arrow" href="/services/pools-and-spas">Explore pools & spas</a>
+						</article>
+						<article class="service-card">
+							<h3>Outdoor living environments</h3>
+							<p>
+								Covered lounges, summer kitchens, fire features, and immersive audio-visual setups built
+								for year-round entertaining.
+							</p>
+							<a class="link-arrow" href="/services">See outdoor living</a>
+						</article>
+						<article class="service-card">
+							<h3>Full-site enhancements</h3>
+							<p>
+								Drainage, retaining, pavers, and landscape lighting that ensure longevity and effortless
+								maintenance.
+							</p>
+							<a class="link-arrow" href="/services">View site services</a>
+						</article>
+					</div>
+				</div>
+			</section>
+
+			<section class="highlight">
+				<div class="wrap highlight__inner">
+					<div class="highlight__content">
+						<p class="eyebrow">Featured transformation</p>
+						<h2>Coastal sanctuary in Ormond Beach</h2>
+						<p>
+							Expansive negative-edge pool, elevated spa, sunken conversation pit, and a layered lighting
+							scheme that extends the shoreline indoors.
+						</p>
+						<ul class="highlight__stats">
+							<li><span>6 weeks</span> concept to permit</li>
+							<li><span>3D</span> virtual walkthrough approved design</li>
+							<li><span>Zero</span> punch-list items at handoff</li>
+						</ul>
+						<a class="button button--primary" href="/portfolio">Tour the full project</a>
+					</div>
+					<div class="highlight__media">
+						<img src={projectImage} alt="Luxury pool overlooking coastline" loading="lazy" />
+					</div>
+				</div>
+			</section>
+
+			<section class="process">
+				<div class="wrap">
+					<p class="eyebrow">Our approach</p>
+					<h2>Proven process, concierge experience</h2>
+					<ol class="process__steps">
+						<li>
+							<h3>Vision & discovery</h3>
+							<p>
+								We collaborate on-programming, inspiration, and budget alignment to build a shared vision
+								of your outdoor lifestyle.
+							</p>
+						</li>
+						<li>
+							<h3>Design development</h3>
+							<p>
+								Concept boards evolve into technical plans, engineering, and permit-ready documentation,
+								supported by immersive visuals.
+							</p>
+						</li>
+						<li>
+							<h3>Build & refinement</h3>
+							<p>
+								Your dedicated construction lead coordinates trades, quality checks, and weekly
+								walkthroughs until the final reveal.
+							</p>
+						</li>
+					</ol>
+				</div>
+			</section>
+
+			<section class="testimonials">
+				<div class="wrap">
+					<p class="eyebrow">Client reflections</p>
+					<h2>"Every detail exceeded our expectations"</h2>
+					<div class="testimonials__grid">
+						<blockquote>
+							<p>
+								"From the first design meeting through installation, the team anticipated every decision. Our
+									backyard is now the centerpiece of family gatherings."
+							</p>
+							<footer>— The Ramirez family, Winter Park</footer>
+						</blockquote>
+						<blockquote>
+							<p>
+								"Weekly progress updates and immaculate craftsmanship. They transformed a blank canvas into
+									a resort-level experience."
+							</p>
+							<footer>— Jason & Claire, Lake Mary</footer>
+						</blockquote>
+					</div>
+				</div>
+			</section>
+
+			<section class="cta">
+				<div class="wrap cta__inner">
+					<div>
+						<p class="eyebrow">Ready for the reveal?</p>
+						<h2>Let’s design the oasis you’ll never want to leave</h2>
+						<p>
+							Schedule a consultation to explore concepts, budgets, and timelines tailored to your property.
+						</p>
+					</div>
+					<a class="button button--inverse" href="/contact">Book a consultation</a>
+				</div>
+			</section>
 		</main>
 		<Footer />
+		<style>
+			:global(body) {
+				background: #fdf9f4;
+				color: #2f2a25;
+			}
+			.home {
+				max-width: none;
+				width: 100%;
+				padding: 0;
+			}
+			.wrap {
+				width: min(1120px, 92vw);
+				margin: 0 auto;
+			}
+			.eyebrow {
+				text-transform: uppercase;
+				letter-spacing: 0.14em;
+				font-size: 0.75rem;
+				font-weight: 600;
+				color: #a06f2a;
+				margin-bottom: 1rem;
+			}
+			.button {
+				display: inline-flex;
+				align-items: center;
+				justify-content: center;
+				gap: 0.5rem;
+				padding: 0.85rem 1.8rem;
+				border-radius: 999px;
+				border: 1px solid transparent;
+				font-size: 0.95rem;
+				font-weight: 600;
+				text-decoration: none;
+				transition: transform 120ms ease, box-shadow 120ms ease, background 120ms ease;
+			}
+			.button--primary {
+				background: #0f6a6a;
+				color: #fdf9f4;
+				box-shadow: 0 12px 30px rgba(15, 106, 106, 0.25);
+			}
+			.button--primary:hover {
+				transform: translateY(-1px);
+				box-shadow: 0 15px 34px rgba(15, 106, 106, 0.28);
+			}
+			.button--ghost {
+				background: transparent;
+				color: #0f6a6a;
+				border-color: rgba(15, 106, 106, 0.25);
+			}
+			.button--ghost:hover {
+				border-color: rgba(15, 106, 106, 0.45);
+				transform: translateY(-1px);
+			}
+			.button--inverse {
+				background: #fdf9f4;
+				color: #0f6a6a;
+				border-color: rgba(253, 249, 244, 0.4);
+			}
+			.button--inverse:hover {
+				transform: translateY(-1px);
+			}
+			.hero {
+				background: radial-gradient(circle at top right, rgba(15, 106, 106, 0.2), transparent 55%),
+					linear-gradient(135deg, #f5ede1 0%, #fdf9f4 45%, #f7efe5 100%);
+				padding: clamp(4rem, 7vw, 6rem) 0;
+			}
+			.hero__inner {
+				display: grid;
+				grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+				gap: clamp(2rem, 4vw, 4rem);
+				width: min(1200px, 92vw);
+				margin: 0 auto;
+				align-items: center;
+			}
+			.hero__content h1 {
+				font-size: clamp(2.4rem, 4vw, 3.4rem);
+				line-height: 1.05;
+				margin-bottom: 1.2rem;
+			}
+			.hero__subtitle {
+				font-size: 1.05rem;
+				margin-bottom: 1.8rem;
+				max-width: 32rem;
+				color: #4f463f;
+			}
+			.hero__actions {
+				display: flex;
+				flex-wrap: wrap;
+				gap: 1rem;
+				margin-bottom: 2.5rem;
+			}
+			.hero__metrics {
+				display: grid;
+				grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+				gap: 1.5rem;
+				margin: 0;
+			}
+			.hero__metrics dt {
+				font-size: 2rem;
+				font-weight: 700;
+				color: #0f6a6a;
+			}
+			.hero__metrics dd {
+				margin: 0;
+				font-size: 0.85rem;
+				color: #6d6258;
+			}
+			.hero__card {
+				background: #ffffff;
+				border-radius: 28px;
+				box-shadow: 0 20px 40px rgba(62, 45, 29, 0.15);
+				overflow: hidden;
+			}
+			.hero__card img {
+				display: block;
+				width: 100%;
+				height: auto;
+			}
+			.hero__card-body {
+				padding: clamp(1.5rem, 3vw, 2.25rem);
+				background: linear-gradient(180deg, #ffffff 0%, #f8f1e7 100%);
+			}
+			.hero__card-body h2 {
+				font-size: 1.5rem;
+				margin-bottom: 0.8rem;
+			}
+			.hero__card-body p {
+				margin-bottom: 1.2rem;
+				color: #5f554d;
+			}
+			.hero__card-body ul {
+				list-style: none;
+				padding: 0;
+				margin: 0;
+				display: grid;
+				gap: 0.5rem;
+				font-size: 0.95rem;
+				color: #3a342f;
+			}
+			.credibility {
+				padding: 2.5rem 0;
+				background: #f1e5d4;
+				border-block: 1px solid rgba(160, 111, 42, 0.18);
+			}
+			.credibility__list {
+				list-style: none;
+				margin: 0;
+				padding: 0;
+				display: flex;
+				flex-wrap: wrap;
+				gap: 1.5rem 2.5rem;
+				font-weight: 600;
+				color: #5b4b36;
+			}
+			.section-header {
+				max-width: 42rem;
+			}
+			.section-header h2 {
+				font-size: clamp(1.8rem, 3vw, 2.6rem);
+				margin-bottom: 1rem;
+			}
+			.section-header p {
+				color: #5f554d;
+			}
+			.services {
+				padding: clamp(4rem, 6vw, 6rem) 0;
+			}
+			.services__grid {
+				display: grid;
+				gap: 1.8rem;
+				grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+				margin-top: clamp(2rem, 4vw, 3rem);
+			}
+			.service-card {
+				background: #ffffff;
+				border-radius: 20px;
+				padding: 2rem;
+				box-shadow: 0 14px 36px rgba(69, 55, 37, 0.1);
+				display: grid;
+				gap: 1rem;
+			}
+			.service-card h3 {
+				margin-bottom: 0.3rem;
+			}
+			.service-card p {
+				color: #5f554d;
+				margin: 0;
+			}
+			.link-arrow {
+				text-decoration: none;
+				font-weight: 600;
+				color: #0f6a6a;
+				display: inline-flex;
+				align-items: center;
+				gap: 0.35rem;
+			}
+			.link-arrow::after {
+				content: '→';
+				transition: transform 120ms ease;
+			}
+			.link-arrow:hover::after {
+				transform: translateX(3px);
+			}
+			.highlight {
+				background: #0f6a6a;
+				color: #fdf9f4;
+				padding: clamp(4rem, 7vw, 6rem) 0;
+			}
+			.highlight__inner {
+				display: grid;
+				gap: clamp(2rem, 4vw, 4rem);
+				align-items: center;
+			}
+			.highlight__content h2 {
+				font-size: clamp(2rem, 3.5vw, 2.8rem);
+				margin-bottom: 1rem;
+			}
+			.highlight__content p {
+				color: rgba(253, 249, 244, 0.88);
+				margin-bottom: 2rem;
+			}
+			.highlight__stats {
+				list-style: none;
+				padding: 0;
+				margin: 0 0 2rem;
+				display: grid;
+				gap: 0.8rem;
+			}
+			.highlight__stats span {
+				font-weight: 700;
+				font-size: 1.05rem;
+			}
+			.highlight__media img {
+				width: 100%;
+				border-radius: 24px;
+				box-shadow: 0 18px 42px rgba(11, 51, 51, 0.4);
+			}
+			.process {
+				padding: clamp(4rem, 6vw, 6rem) 0;
+				background: #fdf9f4;
+			}
+			.process__steps {
+				counter-reset: step;
+				list-style: none;
+				padding: 0;
+				margin: clamp(2rem, 3vw, 3rem) 0 0;
+				display: grid;
+				gap: clamp(1.5rem, 3vw, 2.5rem);
+				grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+			}
+			.process__steps li {
+				background: #ffffff;
+				border-radius: 20px;
+				padding: 2rem;
+				box-shadow: 0 12px 30px rgba(69, 55, 37, 0.08);
+				position: relative;
+			}
+			.process__steps li::before {
+				counter-increment: step;
+				content: counter(step);
+				position: absolute;
+				top: -18px;
+				left: 24px;
+				width: 36px;
+				height: 36px;
+				display: grid;
+				place-items: center;
+				background: #0f6a6a;
+				color: #fdf9f4;
+				border-radius: 50%;
+				font-weight: 700;
+			}
+			.process__steps h3 {
+				margin-top: 0.5rem;
+				margin-bottom: 0.8rem;
+			}
+			.process__steps p {
+				color: #5f554d;
+			}
+			.testimonials {
+				padding: clamp(4rem, 6vw, 6rem) 0;
+			}
+			.testimonials h2 {
+				font-size: clamp(1.8rem, 3vw, 2.4rem);
+				margin-bottom: 2rem;
+				max-width: 32rem;
+			}
+			.testimonials__grid {
+				display: grid;
+				gap: clamp(1.5rem, 3vw, 2.5rem);
+				grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+			}
+			.testimonials blockquote {
+				background: #ffffff;
+				border-radius: 20px;
+				padding: 2.2rem;
+				box-shadow: 0 14px 36px rgba(69, 55, 37, 0.08);
+				margin: 0;
+				color: #4f463f;
+				font-style: normal;
+			}
+			.testimonials blockquote footer {
+				margin-top: 1.5rem;
+				font-weight: 600;
+				color: #2f2a25;
+			}
+			.cta {
+				padding: clamp(4rem, 7vw, 6.5rem) 0 clamp(5rem, 8vw, 7rem);
+				background: radial-gradient(circle at top, rgba(15, 106, 106, 0.15), transparent 55%),
+					linear-gradient(120deg, #2f534d 0%, #0f6a6a 50%, #0e4d54 100%);
+				color: #fdf9f4;
+			}
+			.cta__inner {
+				display: flex;
+				flex-direction: column;
+				gap: 2rem;
+				align-items: flex-start;
+			}
+			.cta__inner h2 {
+				font-size: clamp(2rem, 3.5vw, 2.8rem);
+				margin-bottom: 1rem;
+			}
+			.cta__inner p {
+				margin: 0;
+				max-width: 28rem;
+				color: rgba(253, 249, 244, 0.85);
+			}
+			@media (min-width: 768px) {
+				.cta__inner {
+					flex-direction: row;
+					align-items: center;
+					justify-content: space-between;
+				}
+			}
+			@media (max-width: 640px) {
+				.hero__card {
+					order: -1;
+				}
+				.process__steps li::before {
+					left: 20px;
+				}
+			}
+		</style>
 	</body>
 </html>
