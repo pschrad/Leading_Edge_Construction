@@ -1,0 +1,756 @@
+---
+import type { AstroComponentFactory, ImageMetadata } from 'astro';
+import BaseHead from '../components/BaseHead.astro';
+import Footer from '../components/Footer.astro';
+import Header from '../components/Header.astro';
+import defaultHeroImage from '../assets/blog-placeholder-1.jpg';
+import defaultProjectImage from '../assets/blog-placeholder-2.jpg';
+
+interface CTA {
+	label: string;
+	href: string;
+}
+
+interface Metric {
+	value: string;
+	label: string;
+}
+
+interface Highlight {
+	title: string;
+	description: string;
+	linkLabel?: string;
+	linkHref?: string;
+}
+
+interface ProcessStep {
+	title: string;
+	description: string;
+}
+
+interface Testimonial {
+	quote: string;
+	author: string;
+}
+
+interface HeroCard {
+	title: string;
+	description: string;
+	items?: string[];
+	image?: ImageMetadata;
+}
+
+interface FeaturedProject {
+	title: string;
+	description: string;
+	image?: ImageMetadata;
+	stats?: Metric[];
+	ctaLabel?: string;
+	ctaHref?: string;
+}
+
+interface ClosingCta {
+	eyebrow?: string;
+	title: string;
+	description?: string;
+	buttonLabel: string;
+	buttonHref: string;
+}
+
+interface Props {
+	data: {
+		title: string;
+		excerpt?: string;
+		heroEyebrow?: string;
+		heroHeading?: string;
+		heroDescription?: string;
+		heroImage?: ImageMetadata;
+		heroCard?: HeroCard;
+		ctaPrimary?: CTA;
+		ctaSecondary?: CTA;
+		metrics?: Metric[];
+		serviceAreas?: string[];
+		serviceHighlights?: Highlight[];
+		featuredProject?: FeaturedProject;
+		processSteps?: ProcessStep[];
+		testimonials?: Testimonial[];
+		closingCta?: ClosingCta;
+		[s: string]: unknown;
+	};
+	Content: AstroComponentFactory;
+}
+
+const { data, Content }: Props = Astro.props;
+
+const heroImage = data.heroImage ?? defaultHeroImage;
+const heroEyebrow = data.heroEyebrow ?? 'Central Florida luxury outdoor living';
+const heroHeading = data.heroHeading ?? data.title;
+const heroDescription = data.heroDescription ?? data.excerpt ?? '';
+
+const defaultHeroCard: HeroCard = {
+	title: 'Concierge design & build',
+	description:
+		'Dedicated project leads guide every phase—from feasibility studies and permitting to sculpted finishes and lighting automation.',
+	items: ['Architectural master planning', 'Signature water features', 'Outdoor kitchens & living zones'],
+	image: defaultHeroImage,
+};
+
+const heroCard = data.heroCard ? { ...defaultHeroCard, ...data.heroCard } : defaultHeroCard;
+
+const ctaPrimary: CTA = data.ctaPrimary ?? { label: 'Plan your oasis', href: '/contact' };
+const ctaSecondary: CTA = data.ctaSecondary ?? { label: 'View portfolio', href: '/portfolio' };
+
+const metrics: Metric[] =
+	data.metrics ?? [
+		{ value: '200+', label: 'Custom environments delivered' },
+		{ value: '18 yrs', label: 'Design-build excellence' },
+		{ value: '98%', label: 'Client satisfaction rating' },
+	];
+
+const serviceAreas = data.serviceAreas ?? ['Lake Mary', 'Winter Park', 'Ormond Beach', 'Daytona Shores', 'Windermere'];
+
+const serviceHighlights: Highlight[] =
+	data.serviceHighlights ?? [
+		{
+			title: 'Master planning & permitting',
+			description: 'Site studies, engineering coordination, and HOA-ready documentation handled start to finish.',
+		},
+		{
+			title: 'Luxury water features',
+			description: 'Vanishing edges, integrated spas, and custom lighting scenes curated to your architecture.',
+		},
+		{
+			title: 'Outdoor living experiences',
+			description: 'Summer kitchens, fire features, and shaded lounges tailored for all-season entertaining.',
+		},
+	];
+
+const defaultFeaturedProject: FeaturedProject = {
+	title: 'Coastal sanctuary in Ormond Beach',
+	description:
+		'Expansive negative-edge pool, elevated spa, sunken conversation pit, and a layered lighting scheme that extends the shoreline indoors.',
+	image: defaultProjectImage,
+	stats: [
+		{ value: '6 weeks', label: 'concept to permit' },
+		{ value: '3D', label: 'virtual walkthrough approved design' },
+		{ value: 'Zero', label: 'punch-list items at handoff' },
+	],
+	ctaLabel: 'Tour the full project',
+	ctaHref: '/portfolio',
+};
+
+const featuredProject = data.featuredProject
+	? {
+		...defaultFeaturedProject,
+		...data.featuredProject,
+		image: data.featuredProject.image ?? defaultFeaturedProject.image,
+		stats: data.featuredProject.stats ?? defaultFeaturedProject.stats,
+	}
+	: defaultFeaturedProject;
+
+const processSteps: ProcessStep[] =
+	data.processSteps ?? [
+		{
+			title: 'Vision & discovery',
+			description:
+				'We collaborate on programming, inspiration, and budget alignment to build a shared vision of your outdoor lifestyle.',
+		},
+		{
+			title: 'Design development',
+			description:
+				'Concept boards evolve into technical plans, engineering, and permit-ready documentation, supported by immersive visuals.',
+		},
+		{
+			title: 'Build & refinement',
+			description:
+				'Your dedicated construction lead coordinates trades, quality checks, and weekly walkthroughs until the final reveal.',
+		},
+	];
+
+const testimonials: Testimonial[] =
+	data.testimonials ?? [
+		{
+			quote:
+				'“From the first design meeting through installation, the team anticipated every decision. Our backyard is now the centerpiece of family gatherings.”',
+			author: 'The Ramirez family · Winter Park',
+		},
+		{
+			quote:
+				'“Weekly progress updates and immaculate craftsmanship. They transformed a blank canvas into a resort-level experience.”',
+			author: 'Jason & Claire · Lake Mary',
+		},
+	];
+
+const closingCta: ClosingCta =
+	data.closingCta ?? {
+		eyebrow: 'Ready for the reveal?',
+		title: 'Let’s design the oasis you’ll never want to leave',
+		description: 'Schedule a consultation to explore concepts, budgets, and timelines tailored to your property.',
+		buttonLabel: 'Book a consultation',
+		buttonHref: '/contact',
+	};
+
+const hasHighlights = serviceHighlights.length > 0;
+const hasProcess = processSteps.length > 0;
+const hasTestimonials = testimonials.length > 0;
+const hasContent = typeof Content === 'function';
+
+const styleVars = {
+	heroBg: `url(${heroImage.src})`,
+	projectBg: `url(${(featuredProject.image ?? defaultProjectImage).src})`,
+	heroCardImage: heroCard.image ? `url(${heroCard.image.src})` : `url(${defaultHeroImage.src})`,
+};
+---
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<BaseHead title={`${data.title} | Leading Edge Construction`} description={data.excerpt ?? heroDescription} />
+	</head>
+	<body class="service-page">
+		<Header />
+		<main class="page">
+			<section class="hero">
+				<div class="hero__overlay">
+					<div class="hero__top wrap">
+						<p class="hero__eyebrow">{heroEyebrow}</p>
+						<div class="hero__cta-group">
+							<a class="button button--primary" href={ctaPrimary.href}>{ctaPrimary.label}</a>
+							<a class="button button--outline" href={ctaSecondary.href}>{ctaSecondary.label}</a>
+						</div>
+					</div>
+					<div class="hero__content wrap">
+						<h1>{heroHeading}</h1>
+						{heroDescription && <p class="hero__subtitle">{heroDescription}</p>}
+						<dl class="hero__metrics">
+							{metrics.map(({ value, label }) => (
+								<div>
+									<dt>{value}</dt>
+									<dd>{label}</dd>
+								</div>
+							))}
+						</dl>
+					</div>
+					<aside class="hero__card wrap">
+						<div class="hero__card-media" role="presentation"></div>
+						<div class="hero__card-body">
+							<h2>{heroCard.title}</h2>
+							<p>{heroCard.description}</p>
+							{heroCard.items && heroCard.items.length > 0 && (
+								<ul>
+									{heroCard.items.map((item) => (
+										<li>{item}</li>
+									))}
+								</ul>
+							)}
+						</div>
+					</aside>
+				</div>
+			</section>
+
+			{serviceAreas.length > 0 && (
+				<section class="credibility">
+					<div class="wrap">
+						<p class="eyebrow">Trusted across Central Florida</p>
+						<ul class="credibility__list">
+							{serviceAreas.map((area) => (
+								<li>{area}</li>
+							))}
+						</ul>
+					</div>
+				</section>
+			)}
+
+			{hasHighlights && (
+				<section class="services">
+					<div class="wrap">
+						<div class="section-header">
+							<p class="eyebrow">Signature capabilities</p>
+							<h2>What this service delivers</h2>
+						</div>
+						<div class="services__grid">
+							{serviceHighlights.map((highlight) => (
+								<article class="service-card">
+									<h3>{highlight.title}</h3>
+									<p>{highlight.description}</p>
+									{highlight.linkHref && highlight.linkLabel && (
+										<a class="link-arrow" href={highlight.linkHref}>{highlight.linkLabel}</a>
+									)}
+								</article>
+							))}
+						</div>
+					</div>
+				</section>
+			)}
+
+			{hasContent && (
+				<section class="service-body">
+					<div class="wrap prose">
+						<Content />
+					</div>
+				</section>
+			)}
+
+			{featuredProject && (
+				<section class="highlight">
+					<div class="wrap highlight__inner">
+						<div class="highlight__content">
+							<p class="eyebrow">Featured transformation</p>
+							<h2>{featuredProject.title}</h2>
+							<p>{featuredProject.description}</p>
+							{featuredProject.stats && (
+								<ul class="highlight__stats">
+									{featuredProject.stats.map(({ value, label }) => (
+										<li>
+											<span>{value}</span> {label}
+										</li>
+									))}
+								</ul>
+							)}
+							{featuredProject.ctaHref && featuredProject.ctaLabel && (
+								<a class="button button--primary" href={featuredProject.ctaHref}>{featuredProject.ctaLabel}</a>
+							)}
+						</div>
+						<div class="highlight__media" role="presentation"></div>
+					</div>
+				</section>
+			)}
+
+			{hasProcess && (
+				<section class="process">
+					<div class="wrap">
+						<p class="eyebrow">Our approach</p>
+						<h2>Proven process, concierge experience</h2>
+						<ol class="process__steps">
+							{processSteps.map((step) => (
+								<li>
+									<h3>{step.title}</h3>
+									<p>{step.description}</p>
+								</li>
+							))}
+						</ol>
+					</div>
+				</section>
+			)}
+
+			{hasTestimonials && (
+				<section class="testimonials">
+					<div class="wrap">
+						<p class="eyebrow">Client reflections</p>
+						<h2>{data.title} success stories</h2>
+						<div class="testimonials__grid">
+							{testimonials.map((testimonial) => (
+								<blockquote>
+									<p>{testimonial.quote}</p>
+									<footer>{testimonial.author}</footer>
+								</blockquote>
+							))}
+						</div>
+					</div>
+				</section>
+			)}
+
+			{closingCta && (
+				<section class="cta">
+					<div class="wrap cta__inner">
+						<div>
+							{closingCta.eyebrow && <p class="eyebrow">{closingCta.eyebrow}</p>}
+							<h2>{closingCta.title}</h2>
+							{closingCta.description && <p>{closingCta.description}</p>}
+						</div>
+						<a class="button button--inverse" href={closingCta.buttonHref}>{closingCta.buttonLabel}</a>
+					</div>
+				</section>
+			)}
+		</main>
+		<Footer />
+		<style define:vars={styleVars}>
+			:global(body.service-page) {
+				background: #040e14;
+				color: #ffffff;
+				margin: 0;
+			}
+			.page {
+				max-width: none;
+				width: 100%;
+				padding: 0;
+			}
+			.hero {
+				position: relative;
+				min-height: clamp(30rem, 92vh, 48rem);
+				display: grid;
+				align-items: center;
+				color: #ffffff;
+				background: radial-gradient(circle at center, rgba(8, 37, 46, 0.6), rgba(4, 14, 20, 0.92)), var(--heroBg) center / cover no-repeat;
+			}
+			.hero__overlay {
+				position: relative;
+				z-index: 1;
+				display: flex;
+				flex-direction: column;
+				gap: clamp(4rem, 10vh, 6rem);
+				padding: clamp(5rem, 12vh, 7rem) 0 clamp(4rem, 10vh, 5.5rem);
+			}
+			.hero__top {
+				display: flex;
+				justify-content: space-between;
+				align-items: center;
+				gap: 2rem;
+				color: rgba(255, 255, 255, 0.8);
+			}
+			.hero__cta-group {
+				display: flex;
+				gap: 1rem;
+				flex-wrap: wrap;
+			}
+			.hero__eyebrow {
+				text-transform: uppercase;
+				letter-spacing: 0.18em;
+				font-size: 0.8rem;
+				font-weight: 600;
+				margin: 0;
+				color: rgba(255, 255, 255, 0.75);
+			}
+			.hero__content {
+				display: grid;
+				gap: 1.5rem;
+				max-width: 840px;
+			}
+			.hero__content h1 {
+				margin: 0;
+				font-size: clamp(2.6rem, 6vw, 4rem);
+				line-height: 1.05;
+			}
+			.hero__subtitle {
+				margin: 0;
+				font-size: clamp(1rem, 2.8vw, 1.2rem);
+				color: rgba(255, 255, 255, 0.78);
+			}
+			.hero__metrics {
+				display: grid;
+				grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+				gap: 1.5rem;
+				margin: 0;
+			}
+			.hero__metrics dt {
+				font-size: 2rem;
+				font-weight: 700;
+				color: #63d9ff;
+			}
+			.hero__metrics dd {
+				margin: 0;
+				font-size: 0.85rem;
+				color: rgba(255, 255, 255, 0.72);
+			}
+			.hero__card {
+				display: grid;
+				grid-template-columns: minmax(0, 320px) minmax(0, 1fr);
+				gap: 0;
+				background: rgba(253, 249, 244, 0.08);
+				border-radius: 28px;
+				backdrop-filter: blur(12px);
+				box-shadow: 0 20px 40px rgba(3, 9, 12, 0.35);
+				overflow: hidden;
+			}
+			.hero__card-media {
+				background: var(--heroCardImage) center / cover no-repeat;
+			}
+			.hero__card-body {
+				padding: clamp(1.8rem, 4vw, 2.6rem);
+				background: linear-gradient(180deg, rgba(253, 249, 244, 0.18), rgba(253, 249, 244, 0.08));
+				color: #040e14;
+			}
+			.hero__card-body h2 {
+				margin-top: 0;
+				margin-bottom: 0.8rem;
+				font-size: 1.5rem;
+				color: #0f6a6a;
+			}
+			.hero__card-body p {
+				margin: 0 0 1.2rem 0;
+				color: #2f2a25;
+			}
+			.hero__card-body ul {
+				list-style: none;
+				padding: 0;
+				margin: 0;
+				display: grid;
+				gap: 0.6rem;
+				color: #2f2a25;
+			}
+			.credibility {
+				padding: 2.5rem 0;
+				background: rgba(253, 249, 244, 0.08);
+			}
+			.wrap {
+				width: min(1120px, 92vw);
+				margin: 0 auto;
+			}
+			.eyebrow {
+				text-transform: uppercase;
+				letter-spacing: 0.14em;
+				font-size: 0.75rem;
+				font-weight: 600;
+				color: #a06f2a;
+				margin-bottom: 1rem;
+			}
+			.credibility__list {
+				list-style: none;
+				margin: 0;
+				padding: 0;
+				display: flex;
+				flex-wrap: wrap;
+				gap: 1.5rem 2.5rem;
+				font-weight: 600;
+				color: rgba(253, 249, 244, 0.85);
+			}
+			.section-header h2 {
+				font-size: clamp(1.8rem, 3vw, 2.6rem);
+				margin-bottom: 1rem;
+			}
+			.section-header p {
+				color: rgba(47, 42, 37, 0.78);
+			}
+			.services {
+				padding: clamp(4rem, 6vw, 6rem) 0;
+				background: #fdf9f4;
+				color: #2f2a25;
+			}
+			.services__grid {
+				display: grid;
+				gap: 1.8rem;
+				grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+				margin-top: clamp(2rem, 4vw, 3rem);
+			}
+			.service-card {
+				background: #ffffff;
+				border-radius: 20px;
+				padding: 2rem;
+				box-shadow: 0 14px 36px rgba(69, 55, 37, 0.1);
+				display: grid;
+				gap: 1rem;
+			}
+			.service-card h3 {
+				margin-bottom: 0.3rem;
+			}
+			.service-card p {
+				margin: 0;
+				color: #5f554d;
+			}
+			.link-arrow {
+				text-decoration: none;
+				font-weight: 600;
+				color: #0f6a6a;
+				display: inline-flex;
+				align-items: center;
+				gap: 0.35rem;
+			}
+			.link-arrow::after {
+				content: '→';
+				transition: transform 120ms ease;
+			}
+			.link-arrow:hover::after {
+				transform: translateX(3px);
+			}
+			.service-body {
+				padding: clamp(4rem, 6vw, 6rem) 0;
+				background: #fdf9f4;
+				color: #2f2a25;
+			}
+			.highlight {
+				background: #0f6a6a;
+				color: #fdf9f4;
+				padding: clamp(4rem, 7vw, 6rem) 0;
+			}
+			.highlight__inner {
+				display: grid;
+				gap: clamp(2rem, 4vw, 4rem);
+				align-items: center;
+			}
+			.highlight__media {
+				width: 100%;
+				min-height: 280px;
+				border-radius: 24px;
+				background: var(--projectBg) center / cover no-repeat;
+				box-shadow: 0 18px 42px rgba(11, 51, 51, 0.4);
+			}
+			.highlight__content p {
+				color: rgba(253, 249, 244, 0.88);
+				margin-bottom: 2rem;
+			}
+			.highlight__stats {
+				list-style: none;
+				padding: 0;
+				margin: 0 0 2rem;
+				display: grid;
+				gap: 0.8rem;
+			}
+			.highlight__stats span {
+				font-weight: 700;
+				font-size: 1.05rem;
+			}
+			.process {
+				padding: clamp(4rem, 6vw, 6rem) 0;
+				background: #fdf9f4;
+				color: #2f2a25;
+			}
+			.process__steps {
+				counter-reset: step;
+				list-style: none;
+				padding: 0;
+				margin: clamp(2rem, 3vw, 3rem) 0 0;
+				display: grid;
+				gap: clamp(1.5rem, 3vw, 2.5rem);
+				grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+			}
+			.process__steps li {
+				background: #ffffff;
+				border-radius: 20px;
+				padding: 2rem;
+				box-shadow: 0 12px 30px rgba(69, 55, 37, 0.08);
+				position: relative;
+			}
+			.process__steps li::before {
+				counter-increment: step;
+				content: counter(step);
+				position: absolute;
+				top: -18px;
+				left: 24px;
+				width: 36px;
+				height: 36px;
+				display: grid;
+				place-items: center;
+				background: #0f6a6a;
+				color: #fdf9f4;
+				border-radius: 50%;
+				font-weight: 700;
+			}
+			.process__steps h3 {
+				margin-top: 0.5rem;
+				margin-bottom: 0.8rem;
+			}
+			.process__steps p {
+				color: #5f554d;
+			}
+			.testimonials {
+				padding: clamp(4rem, 6vw, 6rem) 0;
+				background: #fdf9f4;
+				color: #2f2a25;
+			}
+			.testimonials__grid {
+				display: grid;
+				gap: clamp(1.5rem, 3vw, 2.5rem);
+				grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+			}
+			.testimonials blockquote {
+				background: #ffffff;
+				border-radius: 20px;
+				padding: 2.2rem;
+				box-shadow: 0 14px 36px rgba(69, 55, 37, 0.08);
+				margin: 0;
+				font-style: normal;
+				color: #4f463f;
+			}
+			.testimonials blockquote footer {
+				margin-top: 1.5rem;
+				font-weight: 600;
+				color: #2f2a25;
+			}
+			.cta {
+				padding: clamp(4rem, 7vw, 6.5rem) 0 clamp(5rem, 8vw, 7rem);
+				background: radial-gradient(circle at top, rgba(15, 106, 106, 0.15), transparent 55%),
+					linear-gradient(120deg, #2f534d 0%, #0f6a6a 50%, #0e4d54 100%);
+				color: #fdf9f4;
+			}
+			.cta__inner {
+				display: flex;
+				flex-direction: column;
+				gap: 2rem;
+				align-items: flex-start;
+			}
+			.cta__inner h2 {
+				font-size: clamp(2rem, 3.5vw, 2.8rem);
+				margin-bottom: 1rem;
+			}
+			.cta__inner p {
+				margin: 0;
+				max-width: 28rem;
+				color: rgba(253, 249, 244, 0.85);
+			}
+			.button {
+				display: inline-flex;
+				align-items: center;
+				justify-content: center;
+				gap: 0.5rem;
+				padding: 0.85rem 1.9rem;
+				border-radius: 999px;
+				border: 2px solid transparent;
+				font-size: 0.95rem;
+				font-weight: 600;
+				text-decoration: none;
+				transition: transform 120ms ease, box-shadow 120ms ease, background 120ms ease, border-color 120ms ease;
+			}
+			.button--primary {
+				background: rgba(31, 149, 204, 0.92);
+				color: #ffffff;
+				box-shadow: 0 16px 34px rgba(17, 86, 118, 0.35);
+			}
+			.button--primary:hover {
+				transform: translateY(-2px);
+				box-shadow: 0 20px 38px rgba(17, 86, 118, 0.4);
+			}
+			.button--outline {
+				border-color: rgba(255, 255, 255, 0.75);
+				color: #ffffff;
+				background: transparent;
+			}
+			.button--outline:hover {
+				border-color: #ffffff;
+				background: rgba(255, 255, 255, 0.12);
+			}
+			.button--inverse {
+				background: #fdf9f4;
+				color: #0f6a6a;
+				border-color: rgba(253, 249, 244, 0.4);
+			}
+			.button--inverse:hover {
+				transform: translateY(-1px);
+			}
+			@media (max-width: 960px) {
+				.hero__card {
+					grid-template-columns: 1fr;
+				}
+				.hero__card-media {
+					height: 220px;
+				}
+				.hero__top {
+					flex-direction: column;
+					align-items: flex-start;
+				}
+			}
+			@media (max-width: 640px) {
+				.hero__overlay {
+					gap: 3rem;
+					padding: 4.5rem 0 3.8rem;
+				}
+				.hero__cta-group {
+					justify-content: center;
+				}
+				.hero__top {
+					align-items: center;
+					text-align: center;
+				}
+				.hero__content {
+					text-align: center;
+				}
+				.hero__metrics {
+					justify-items: center;
+				}
+				.cta__inner {
+					align-items: center;
+					text-align: center;
+				}
+			}
+		</style>
+	</body>
+</html>

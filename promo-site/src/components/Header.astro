@@ -1,9 +1,11 @@
 ---
 import { SITE_TITLE } from '../consts';
 import HeaderLink from './HeaderLink.astro';
+
+const isOverlay = Astro.url.pathname === '/' || Astro.url.pathname.startsWith('/services/');
 ---
 
-<header class="site-header">
+<header class={`site-header${isOverlay ? ' site-header--home' : ''}`}>
 	<div class="wrap nav">
 		<a class="brand" href="/">
 			<span class="brand__mark">LE</span>
@@ -26,10 +28,48 @@ import HeaderLink from './HeaderLink.astro';
 	.site-header {
 		position: sticky;
 		top: 0;
-		z-index: 10;
+		z-index: 20;
 		background: rgba(253, 249, 244, 0.94);
 		backdrop-filter: blur(12px);
 		border-bottom: 1px solid rgba(160, 111, 42, 0.18);
+		transition: background 200ms ease, border-color 200ms ease;
+	}
+	.site-header--home {
+		position: absolute;
+		width: 100%;
+		background: transparent;
+		backdrop-filter: none;
+		border-bottom: none;
+	}
+	.site-header--home .nav__links a,
+	.site-header--home .nav__links a.active,
+	.site-header--home .brand,
+	.site-header--home .brand__text span,
+	.site-header--home .nav__cta {
+		color: #ffffff;
+	}
+	.site-header--home .nav__links a {
+		border-bottom-color: rgba(255, 255, 255, 0.3);
+	}
+	.site-header--home .nav__links a:hover,
+	.site-header--home .nav__links a.active {
+		border-bottom-color: #ffffff;
+		color: #ffffff;
+	}
+	.site-header--home .brand__mark {
+		background: rgba(15, 106, 106, 0.85);
+	}
+	.site-header--home .brand__text span {
+		color: rgba(255, 255, 255, 0.7);
+	}
+	.site-header--home .nav__cta {
+		border: 2px solid rgba(255, 255, 255, 0.75);
+		background: transparent;
+		box-shadow: none;
+	}
+	.site-header--home .nav__cta:hover {
+		background: rgba(255, 255, 255, 0.12);
+		box-shadow: none;
 	}
 	.wrap {
 		width: min(1120px, 92vw);
@@ -39,7 +79,7 @@ import HeaderLink from './HeaderLink.astro';
 		display: flex;
 		align-items: center;
 		justify-content: space-between;
-		padding: 0.85rem 0;
+		padding: 1rem 0;
 		gap: 1.5rem;
 	}
 	.brand {
@@ -102,7 +142,7 @@ import HeaderLink from './HeaderLink.astro';
 		font-weight: 600;
 		text-decoration: none;
 		box-shadow: 0 12px 24px rgba(15, 106, 106, 0.18);
-		transition: transform 120ms ease, box-shadow 120ms ease;
+		transition: transform 120ms ease, box-shadow 120ms ease, background 120ms ease, border-color 120ms ease;
 	}
 	.nav__cta:hover {
 		transform: translateY(-1px);
@@ -121,6 +161,9 @@ import HeaderLink from './HeaderLink.astro';
 			padding-bottom: 0.5rem;
 			border-top: 1px solid rgba(160, 111, 42, 0.18);
 			padding-top: 0.75rem;
+		}
+		.site-header--home .nav__links {
+			border-top: 1px solid rgba(255, 255, 255, 0.25);
 		}
 		.nav__cta {
 			margin-left: auto;

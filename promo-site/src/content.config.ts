@@ -17,13 +17,76 @@ const blog = defineCollection({
 });
 
 const services = defineCollection({
-  type: "content",
-  schema: z.object({
-    title: z.string(),
-    order: z.number().optional(),
-    excerpt: z.string().optional(),
-    heroImage: z.string().optional(),
-  }),
+	type: 'content',
+	schema: ({ image }) =>
+		z.object({
+			title: z.string(),
+			order: z.number().optional(),
+			excerpt: z.string().optional(),
+			heroEyebrow: z.string().optional(),
+			heroHeading: z.string().optional(),
+			heroDescription: z.string().optional(),
+			heroImage: image().optional(),
+			heroCard: z
+				.object({
+					title: z.string(),
+					description: z.string(),
+					items: z.array(z.string()).optional(),
+					image: image().optional(),
+				})
+				.optional(),
+			ctaPrimary: z
+				.object({
+					label: z.string(),
+					href: z.string(),
+				})
+				.optional(),
+			ctaSecondary: z
+				.object({
+					label: z.string(),
+					href: z.string(),
+				})
+				.optional(),
+			metrics: z
+				.array(z.object({ value: z.string(), label: z.string() }))
+				.optional(),
+			serviceAreas: z.array(z.string()).optional(),
+			serviceHighlights: z
+				.array(
+					z.object({
+						title: z.string(),
+						description: z.string(),
+						linkLabel: z.string().optional(),
+						linkHref: z.string().optional(),
+					}),
+				)
+				.optional(),
+			featuredProject: z
+				.object({
+					title: z.string(),
+					description: z.string(),
+					image: image().optional(),
+					stats: z.array(z.object({ value: z.string(), label: z.string() })).optional(),
+					ctaLabel: z.string().optional(),
+					ctaHref: z.string().optional(),
+				})
+				.optional(),
+			processSteps: z
+				.array(z.object({ title: z.string(), description: z.string() }))
+				.optional(),
+			testimonials: z
+				.array(z.object({ quote: z.string(), author: z.string() }))
+				.optional(),
+			closingCta: z
+				.object({
+					eyebrow: z.string().optional(),
+					title: z.string(),
+					description: z.string().optional(),
+					buttonLabel: z.string(),
+					buttonHref: z.string(),
+				})
+				.optional(),
+		}),
 });
 
 const portfolio = defineCollection({
@@ -48,4 +111,3 @@ const resources = defineCollection({
 });
 
 export const collections = { blog, services, portfolio, resources };
-

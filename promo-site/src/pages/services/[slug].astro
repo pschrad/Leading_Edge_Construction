@@ -1,0 +1,17 @@
+---
+import ServicePage from '../../layouts/ServicePage.astro';
+import { getEntryBySlug } from 'astro:content';
+
+const { slug } = Astro.params;
+
+const entry = slug ? await getEntryBySlug('services', slug) : undefined;
+
+if (!entry) {
+	throw new Error(`Service entry for "${slug ?? 'unknown'}" not found.`);
+}
+
+const rendered = await entry.render();
+const { Content, data } = rendered;
+---
+
+<ServicePage data={data} Content={Content} />
