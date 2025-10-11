@@ -1,17 +1,28 @@
 ---
 import ServicePage from '../../layouts/ServicePage.astro';
-import { getEntryBySlug } from 'astro:content';
+import { getCollection, getEntryBySlug } from 'astro:content';
+
+export async function getStaticPaths() {
+	const services = await getCollection('services');
+	return services.map((entry) => ({
+		params: { slug: entry.slug },
+	}));
+}
 
 const { slug } = Astro.params;
 
-const entry = slug ? await getEntryBySlug('services', slug) : undefined;
-
-if (!entry) {
-	throw new Error(`Service entry for "${slug ?? 'unknown'}" not found.`);
+if (!slug) {
+	throw new Error('Missing service slug parameter.');
 }
 
-const rendered = await entry.render();
-const { Content, data } = rendered;
+const entry = await getEntryBySlug('services', slug);
+
+if (!entry) {
+	throw new Error(`Service entry for "${slug}" not found.`);
+}
+
+const { Content } = await entry.render();
+const { data } = entry;
 ---
 
 <ServicePage data={data} Content={Content} />
