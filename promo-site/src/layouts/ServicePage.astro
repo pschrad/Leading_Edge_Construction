@@ -1,10 +1,11 @@
 ---
-import type { AstroComponentFactory, ImageMetadata } from 'astro';
+import type { ImageMetadata } from 'astro';
+import type { AstroComponentFactory } from 'astro/runtime/server';
 import BaseHead from '../components/BaseHead.astro';
 import Footer from '../components/Footer.astro';
 import Header from '../components/Header.astro';
-import defaultHeroImage from '../assets/blog-placeholder-1.jpg';
-import defaultProjectImage from '../assets/blog-placeholder-2.jpg';
+import defaultHeroImage from '../assets/new-turf-installation.jpg';
+import defaultProjectImage from '../assets/new-turf-installation.jpg';
 
 interface CTA {
 	label: string;
@@ -83,7 +84,7 @@ interface Props {
 const { data, Content }: Props = Astro.props;
 
 const heroImage = data.heroImage ?? defaultHeroImage;
-const heroEyebrow = data.heroEyebrow ?? 'Central Florida luxury outdoor living';
+const heroEyebrow = data.heroEyebrow ?? 'Annapolis Maryland luxury outdoor living';
 const heroHeading = data.heroHeading ?? data.title;
 const heroDescription = data.heroDescription ?? data.excerpt ?? '';
 
@@ -187,13 +188,15 @@ const closingCta: ClosingCta =
 		title: 'Let’s design the oasis you’ll never want to leave',
 		description: 'Schedule a consultation to explore concepts, budgets, and timelines tailored to your property.',
 		buttonLabel: 'Book a consultation',
-		buttonHref: '/contact',
+		buttonHref:
+			'https://www.thumbtack.com/md/davidsonville/landscaping/leading-edge-avelar-contractors-llc/service/464791489632141329?utm_source=cma-google&utm_medium=googlereserve&hl=en-US&gei=9e_raIKWCK3V5NoP152j8A8&rwg_token=ACgRB3cLkTdWxDK6S3GuUPR8Jsi8vm53jRs8M5F72TZ3m2Z7kQMwhLCTPetQmVbfdtTAw5_u-CtrQ95fX7QcnRebiYbsuCbHTw%3D%3D&authuser=1',
 	};
 
 const hasHighlights = serviceHighlights.length > 0;
 const hasProcess = processSteps.length > 0;
 const hasTestimonials = testimonials.length > 0;
 const hasContent = typeof Content === 'function';
+const closingCtaIsExternal = /^https?:\/\//.test(closingCta.buttonHref ?? '');
 
 const styleVars = {
 	heroBg: `url(${heroImage.src})`,
@@ -251,7 +254,7 @@ const styleVars = {
 			{serviceAreas.length > 0 && (
 				<section class="credibility">
 					<div class="wrap">
-						<p class="eyebrow">Trusted across Central Florida</p>
+						<p class="eyebrow">Trusted across Annapolis Maryland</p>
 						<ul class="credibility__list">
 							{serviceAreas.map((area) => (
 								<li>{area}</li>
@@ -358,7 +361,14 @@ const styleVars = {
 							<h2>{closingCta.title}</h2>
 							{closingCta.description && <p>{closingCta.description}</p>}
 						</div>
-						<a class="button button--inverse" href={closingCta.buttonHref}>{closingCta.buttonLabel}</a>
+						<a
+							class="button button--inverse"
+							href={closingCta.buttonHref}
+							target={closingCtaIsExternal ? '_blank' : undefined}
+							rel={closingCtaIsExternal ? 'noopener noreferrer' : undefined}
+						>
+							{closingCta.buttonLabel}
+						</a>
 					</div>
 				</section>
 			)}

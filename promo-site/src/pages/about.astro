@@ -1,63 +1,260 @@
 ---
-import AboutHeroImage from '../assets/blog-placeholder-about.jpg';
-import Layout from '../layouts/BlogPost.astro';
+import BaseHead from '../components/BaseHead.astro';
+import Footer from '../components/Footer.astro';
+import Header from '../components/Header.astro';
 ---
+<!doctype html>
+<html lang="en">
+	<head>
+		<BaseHead
+			title="About Leading Edge Construction"
+			description="Over 20 years of crafting outdoor living spaces with integrity and concierge-level service."
+		/>
+	</head>
+	<body class="about-page">
+		<Header />
+		<main>
+			<section class="hero">
+				<div class="hero__media" role="presentation"></div>
+				<div class="wrap hero__content">
+					<p class="eyebrow">About Leading Edge Construction</p>
+					<h1>Dedicated to building the yard of your dreams</h1>
+					<p>
+						We strive to please you and we stand behind our work. For more than 15 years our team has
+							helped homeowners across Annapolis, Maryland transform their properties with custom outdoor
+							spaces that blend beauty, durability, and everyday function.
+					</p>
+				</div>
+			</section>
 
-<Layout
-	title="About Me"
-	description="Lorem ipsum dolor sit amet"
-	pubDate={new Date('August 08 2021')}
-	heroImage={AboutHeroImage}
->
-	<p>
-		Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-		labore et dolore magna aliqua. Vitae ultricies leo integer malesuada nunc vel risus commodo
-		viverra. Adipiscing enim eu turpis egestas pretium. Euismod elementum nisi quis eleifend quam
-		adipiscing. In hac habitasse platea dictumst vestibulum. Sagittis purus sit amet volutpat. Netus
-		et malesuada fames ac turpis egestas. Eget magna fermentum iaculis eu non diam phasellus
-		vestibulum lorem. Varius sit amet mattis vulputate enim. Habitasse platea dictumst quisque
-		sagittis. Integer quis auctor elit sed vulputate mi. Dictumst quisque sagittis purus sit amet.
-	</p>
+			<section class="story">
+				<div class="wrap">
+					<div class="story__column">
+						<h2>Our promise</h2>
+						<p>
+							No job is too big or too small. From intimate courtyards to full-property makeovers, we
+							deliver attentive communication, seasoned craftsmanship, and a commitment to finishing every
+							detail the right way.
+						</p>
+						<p>
+							Let us help you define your outdoor goals, align budgets and timelines, and bring your vision
+							to life with a construction partner you can trust.
+						</p>
+					</div>
+					<div class="story__column card-grid">
+						<div class="info-card">
+							<h3>Overview</h3>
+							<ul>
+								<li>Background checked</li>
+								<li>12 dedicated employees</li>
+								<li>20 years in business</li>
+							</ul>
+						</div>
+						<div class="info-card">
+							<h3>Business hours</h3>
+							<p>This pro hasn't listed their business hours.</p>
+						</div>
+						<div class="info-card">
+							<h3>Payment methods</h3>
+							<p>We accept Cash, Check, and Credit card.</p>
+						</div>
+						<div class="info-card">
+							<h3>Property type</h3>
+							<ul>
+								<li>Residential</li>
+								<li>Commercial</li>
+							</ul>
+						</div>
+						<div class="info-card">
+							<h3>Turf area</h3>
+							<ul>
+								<li>Extra small (less than 500 sq ft)</li>
+								<li>Small (500–1,000 sq ft)</li>
+								<li>Medium (1,000–5,000 sq ft)</li>
+								<li>Large (5,000–10,000 sq ft)</li>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</section>
 
-	<p>
-		Morbi tristique senectus et netus. Id semper risus in hendrerit gravida rutrum quisque non
-		tellus. Habitasse platea dictumst quisque sagittis purus sit amet. Tellus molestie nunc non
-		blandit massa. Cursus vitae congue mauris rhoncus. Accumsan tortor posuere ac ut. Fringilla urna
-		porttitor rhoncus dolor. Elit ullamcorper dignissim cras tincidunt lobortis. In cursus turpis
-		massa tincidunt dui ut ornare lectus. Integer feugiat scelerisque varius morbi enim nunc.
-		Bibendum neque egestas congue quisque egestas diam. Cras ornare arcu dui vivamus arcu felis
-		bibendum. Dignissim suspendisse in est ante in nibh mauris. Sed tempus urna et pharetra pharetra
-		massa massa ultricies mi.
-	</p>
-
-	<p>
-		Mollis nunc sed id semper risus in. Convallis a cras semper auctor neque. Diam sit amet nisl
-		suscipit. Lacus viverra vitae congue eu consequat ac felis donec. Egestas integer eget aliquet
-		nibh praesent tristique magna sit amet. Eget magna fermentum iaculis eu non diam. In vitae
-		turpis massa sed elementum. Tristique et egestas quis ipsum suspendisse ultrices. Eget lorem
-		dolor sed viverra ipsum. Vel turpis nunc eget lorem dolor sed viverra. Posuere ac ut consequat
-		semper viverra nam. Laoreet suspendisse interdum consectetur libero id faucibus. Diam phasellus
-		vestibulum lorem sed risus ultricies tristique. Rhoncus dolor purus non enim praesent elementum
-		facilisis. Ultrices tincidunt arcu non sodales neque. Tempus egestas sed sed risus pretium quam
-		vulputate. Viverra suspendisse potenti nullam ac tortor vitae purus faucibus ornare. Fringilla
-		urna porttitor rhoncus dolor purus non. Amet dictum sit amet justo donec enim.
-	</p>
-
-	<p>
-		Mattis ullamcorper velit sed ullamcorper morbi tincidunt. Tortor posuere ac ut consequat semper
-		viverra. Tellus mauris a diam maecenas sed enim ut sem viverra. Venenatis urna cursus eget nunc
-		scelerisque viverra mauris in. Arcu ac tortor dignissim convallis aenean et tortor at. Curabitur
-		gravida arcu ac tortor dignissim convallis aenean et tortor. Egestas tellus rutrum tellus
-		pellentesque eu. Fusce ut placerat orci nulla pellentesque dignissim enim sit amet. Ut enim
-		blandit volutpat maecenas volutpat blandit aliquam etiam. Id donec ultrices tincidunt arcu. Id
-		cursus metus aliquam eleifend mi.
-	</p>
-
-	<p>
-		Tempus quam pellentesque nec nam aliquam sem. Risus at ultrices mi tempus imperdiet. Id porta
-		nibh venenatis cras sed felis eget velit. Ipsum a arcu cursus vitae. Facilisis magna etiam
-		tempor orci eu lobortis elementum. Tincidunt dui ut ornare lectus sit. Quisque non tellus orci
-		ac. Blandit libero volutpat sed cras. Nec tincidunt praesent semper feugiat nibh sed pulvinar
-		proin gravida. Egestas integer eget aliquet nibh praesent tristique magna.
-	</p>
-</Layout>
+			<section class="cta">
+				<div class="wrap cta__inner">
+					<div>
+						<p class="eyebrow">Ready to start?</p>
+						<h2>Share your yard goals and we’ll craft a plan</h2>
+						<p>
+							Tell us about your project vision and we’ll follow up with expert guidance, budgets, and a
+							timeline that fits.
+						</p>
+					</div>
+					<a
+						class="button button--primary"
+						href="https://www.thumbtack.com/md/davidsonville/landscaping/leading-edge-avelar-contractors-llc/service/464791489632141329?utm_source=cma-google&utm_medium=googlereserve&hl=en-US&gei=9e_raIKWCK3V5NoP152j8A8&rwg_token=ACgRB3cLkTdWxDK6S3GuUPR8Jsi8vm53jRs8M5F72TZ3m2Z7kQMwhLCTPetQmVbfdtTAw5_u-CtrQ95fX7QcnRebiYbsuCbHTw%3D%3D&authuser=1"
+						target="_blank"
+						rel="noopener noreferrer"
+					>
+						Book a consultation
+					</a>
+				</div>
+			</section>
+		</main>
+		<Footer />
+		<style>
+			:global(body.about-page) {
+				margin: 0;
+				background: #fdf9f4;
+				color: #2f2a25;
+			}
+			main {
+				padding-bottom: 6rem;
+			}
+			.wrap {
+				width: min(1120px, 92vw);
+				margin: 0 auto;
+			}
+			.eyebrow {
+				text-transform: uppercase;
+				letter-spacing: 0.14em;
+				font-size: 0.75rem;
+				font-weight: 600;
+				color: #a06f2a;
+				margin-bottom: 1rem;
+			}
+			.hero {
+				position: relative;
+				min-height: clamp(26rem, 70vh, 34rem);
+				display: grid;
+				align-items: center;
+				color: #2f2a25;
+				background: linear-gradient(135deg, #fdf9f4 0%, #f1e5d4 100%);
+			}
+			.hero__media {
+				display: none;
+			}
+			.hero__content {
+				position: relative;
+				display: grid;
+				gap: 1.5rem;
+				z-index: 1;
+			}
+			.hero__content h1 {
+				font-size: clamp(2.2rem, 5vw, 3.4rem);
+				margin: 0;
+				line-height: 1.08;
+			}
+			.hero__content p {
+				margin: 0;
+				max-width: 640px;
+				color: #4f463f;
+			}
+			.story {
+				padding: clamp(4rem, 6vw, 6rem) 0;
+			}
+			.story__column {
+				display: grid;
+				gap: 1.5rem;
+			}
+			.story__column h2 {
+				margin: 0;
+				font-size: clamp(1.8rem, 3.5vw, 2.6rem);
+			}
+			.card-grid {
+				display: grid;
+				gap: 1.5rem;
+				grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+			}
+			.info-card {
+				background: #ffffff;
+				border-radius: 22px;
+				box-shadow: 0 16px 32px rgba(62, 45, 29, 0.12);
+				padding: 2rem;
+				display: grid;
+				gap: 0.75rem;
+			}
+			.info-card h3 {
+				margin: 0;
+				font-size: 1.2rem;
+				color: #0f6a6a;
+			}
+			.info-card ul {
+				margin: 0;
+				padding-left: 1.2rem;
+				color: #4f463f;
+			}
+			.info-card p {
+				margin: 0;
+				color: #4f463f;
+			}
+			.cta {
+				padding: clamp(4rem, 7vw, 6rem) 0;
+				background: linear-gradient(120deg, #2f534d 0%, #0f6a6a 60%, #0e4d54 100%);
+				color: #fdf9f4;
+			}
+			.cta__inner {
+				display: flex;
+				flex-direction: column;
+				gap: 2rem;
+				align-items: flex-start;
+			}
+			.cta__inner h2 {
+				margin: 0 0 1rem;
+				font-size: clamp(2rem, 3.5vw, 2.8rem);
+			}
+			.cta__inner p {
+				margin: 0;
+				max-width: 540px;
+				color: rgba(253, 249, 244, 0.85);
+			}
+			.button {
+				display: inline-flex;
+				align-items: center;
+				justify-content: center;
+				gap: 0.5rem;
+				padding: 0.9rem 1.9rem;
+				border-radius: 999px;
+				border: 2px solid transparent;
+				font-size: 0.95rem;
+				font-weight: 600;
+				text-decoration: none;
+				transition: transform 120ms ease, box-shadow 120ms ease, background 120ms ease;
+			}
+			.button--primary {
+				background: rgba(253, 249, 244, 0.95);
+				color: #0f6a6a;
+				box-shadow: 0 18px 36px rgba(10, 54, 54, 0.3);
+			}
+			.button--primary:hover {
+				transform: translateY(-2px);
+				box-shadow: 0 22px 42px rgba(10, 54, 54, 0.36);
+			}
+			@media (min-width: 860px) {
+				.story__column {
+					display: flex;
+					flex-direction: column;
+					justify-content: center;
+				}
+				.story .wrap {
+					display: grid;
+					gap: 3rem;
+					grid-template-columns: 1.1fr 1fr;
+					align-items: start;
+				}
+				.cta__inner {
+					flex-direction: row;
+					justify-content: space-between;
+					align-items: center;
+				}
+			}
+			@media (max-width: 640px) {
+				.hero__content {
+					text-align: center;
+				}
+				.cta__inner {
+					align-items: center;
+					text-align: center;
+				}
+			}
+		</style>
+	</body>
+</html>
