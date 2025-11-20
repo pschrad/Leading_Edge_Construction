@@ -1,11 +1,13 @@
 ---
+import logo from '../assets/Logo.png';
+
 const today = new Date();
 ---
 
 <footer class="site-footer">
 	<div class="wrap">
 		<div class="footer__brand">
-			<span class="footer__mark">LE</span>
+			<img class="footer__logo" src={logo.src} alt="Leading Edge Construction logo" width="56" height="56" />
 			<div>
 				<strong>Leading Edge Construction</strong>
 				<span>Pools &amp; Outdoor Living</span>
@@ -41,16 +43,10 @@ const today = new Date();
 		align-items: center;
 		gap: 0.9rem;
 	}
-	.footer__mark {
-		display: grid;
-		place-items: center;
-		width: 42px;
-		height: 42px;
-		border-radius: 12px;
-		background: rgba(253, 249, 244, 0.12);
-		color: #fdf9f4;
-		font-weight: 700;
-		letter-spacing: 0.08em;
+	.footer__logo {
+		display: block;
+		width: clamp(48px, 9vw, 56px);
+		height: auto;
 	}
 	.footer__brand strong {
 		font-size: 1.1rem;

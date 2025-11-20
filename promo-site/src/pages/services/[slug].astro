@@ -4,9 +4,12 @@ import { getCollection, getEntryBySlug } from 'astro:content';
 
 export async function getStaticPaths() {
 	const services = await getCollection('services');
-	return services.map((entry) => ({
-		params: { slug: entry.slug },
-	}));
+	return services
+		// Remove patios/outdoor-living page from generated routes
+		.filter((entry) => entry.slug !== 'patios-and-outdoor-living')
+		.map((entry) => ({
+			params: { slug: entry.slug },
+		}));
 }
 
 const { slug } = Astro.params;

@@ -1,114 +1,160 @@
 ---
-import { Image } from 'astro:assets';
-import { getCollection } from 'astro:content';
 import BaseHead from '../../components/BaseHead.astro';
 import Footer from '../../components/Footer.astro';
-import FormattedDate from '../../components/FormattedDate.astro';
 import Header from '../../components/Header.astro';
-import { SITE_DESCRIPTION, SITE_TITLE } from '../../consts';
 
-const posts = (await getCollection('blog')).sort(
-	(a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
-);
+
 ---
-
 <!doctype html>
 <html lang="en">
 	<head>
-		<BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
-		<style>
-			main {
-				width: 960px;
-			}
-			ul {
-				display: flex;
-				flex-wrap: wrap;
-				gap: 2rem;
-				list-style-type: none;
-				margin: 0;
-				padding: 0;
-			}
-			ul li {
-				width: calc(50% - 1rem);
-			}
-			ul li * {
-				text-decoration: none;
-				transition: 0.2s ease;
-			}
-			ul li:first-child {
-				width: 100%;
-				margin-bottom: 1rem;
-				text-align: center;
-			}
-			ul li:first-child img {
-				width: 100%;
-			}
-			ul li:first-child .title {
-				font-size: 2.369rem;
-			}
-			ul li img {
-				margin-bottom: 0.5rem;
-				border-radius: 12px;
-			}
-			ul li a {
-				display: block;
-			}
-			.title {
-				margin: 0;
-				color: rgb(var(--black));
-				line-height: 1;
-			}
-			.date {
-				margin: 0;
-				color: rgb(var(--gray));
-			}
-			ul li a:hover h4,
-			ul li a:hover .date {
-				color: rgb(var(--accent));
-			}
-			ul a:hover img {
-				box-shadow: var(--box-shadow);
-			}
-			@media (max-width: 720px) {
-				ul {
-					gap: 0.5em;
-				}
-				ul li {
-					width: 100%;
-					text-align: center;
-				}
-				ul li:first-child {
-					margin-bottom: 0;
-				}
-				ul li:first-child .title {
-					font-size: 1.563em;
-				}
-			}
-		</style>
+		<BaseHead
+			title="Contact Leading Edge Construction"
+			description="Get in touch with Leading Edge Construction for project inquiries, consultations, or service questions."
+		/>
 	</head>
-	<body>
+	<body class="contact-page">
 		<Header />
 		<main>
-			<section>
-				<ul>
-					{
-						posts.map((post) => (
+			<section class="intro">
+				<div class="wrap">
+					<h1>Contact Leading Edge Construction</h1>
+					<p>
+						We are ready to answer questions, schedule consultations, and discuss how we can bring your outdoor project
+						to life. Reach out directly or use your preferred contact method below.
+					</p>
+				</div>
+			</section>
+
+			<section class="contact-sections">
+				<div class="wrap contact-grid">
+					<article class="card">
+						<h2>Staff Contact</h2>
+						<p class="card__heading">Daniel Duran</p>
+						<p class="card__subheading">Project Manager | Sales Representative</p>
+						<ul>
 							<li>
-								<a href={`/blog/${post.id}/`}>
-									{post.data.heroImage && (
-										<Image width={720} height={360} src={post.data.heroImage} alt="" />
-									)}
-									<h4 class="title">{post.data.title}</h4>
-									<p class="date">
-										<FormattedDate date={post.data.pubDate} />
-									</p>
-								</a>
+								<strong>Email:</strong>
+								<a href="mailto:danieljduran07@gmail.com">danieljduran07@gmail.com</a>
 							</li>
-						))
-					}
-				</ul>
+							<li>
+								<strong>Phone:</strong>
+								<a href="tel:14108583808">410-858-3808</a>
+							</li>
+						</ul>
+					</article>
+					<article class="card">
+						<h2>Company Information</h2>
+						<ul>
+							<li><strong>MHIC License No.:</strong> 05-150240</li>
+							<li><strong>Address:</strong> 6730 Solomons Island Rd, Sunderland, MD 20687</li>
+							<li>
+								<strong>Phone:</strong>
+								<a href="tel:14108583808">(410) 858-3808</a>
+							</li>
+							<li>
+								<strong>Email:</strong>
+								<a href="mailto:leadingedgeavelar@gmail.com">leadingedgeavelar@gmail.com</a>
+							</li>
+							<li>
+								<strong>Web:</strong>
+								<a href="https://www.avelarcontractorsllc.com" rel="noreferrer" target="_blank"
+									>www.avelarcontractorsllc.com</a
+								>
+							</li>
+						</ul>
+					</article>
+				</div>
 			</section>
 		</main>
 		<Footer />
+		<style>
+			:global(body.contact-page) {
+				margin: 0;
+				background: #f7f9fb;
+				color: #1f2a37;
+				font-family: var(--font-sans, 'Helvetica Neue', Arial, sans-serif);
+			}
+			main {
+				padding: clamp(3rem, 8vw, 5rem) 0 6rem;
+			}
+			.wrap {
+				width: min(960px, 92vw);
+				margin: 0 auto;
+			}
+			.intro {
+				padding-bottom: clamp(2rem, 5vw, 3rem);
+				text-align: center;
+			}
+			.intro h1 {
+				margin: 0 0 1rem;
+				font-size: clamp(2.25rem, 4vw, 3.25rem);
+				color: #132033;
+			}
+			.intro p {
+				margin: 0 auto;
+				max-width: 640px;
+				color: #4b5563;
+			}
+			.contact-sections {
+				display: flex;
+				flex-direction: column;
+				gap: clamp(2rem, 4vw, 3rem);
+			}
+			.contact-grid {
+				display: grid;
+				grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+				gap: clamp(1.5rem, 3vw, 2.5rem);
+			}
+			.card {
+				background: #ffffff;
+				border-radius: 18px;
+				box-shadow: 0 10px 24px rgba(15, 23, 42, 0.1);
+				padding: clamp(1.75rem, 4vw, 2.25rem);
+				display: grid;
+				gap: 0.75rem;
+			}
+			.card h2 {
+				margin: 0;
+				font-size: 1.4rem;
+				color: #0f172a;
+			}
+			.card__heading {
+				margin: 0;
+				font-weight: 600;
+				font-size: 1.1rem;
+				color: #1f2a37;
+			}
+			.card__subheading {
+				margin: 0;
+				color: #636b75;
+				font-size: 0.95rem;
+			}
+			.card ul {
+				list-style: none;
+				padding: 0;
+				margin: 0;
+				display: grid;
+				gap: 0.5rem;
+				color: #1f2a37;
+			}
+			.card li {
+				display: flex;
+				flex-direction: column;
+				gap: 0.25rem;
+			}
+			.card strong {
+				font-weight: 600;
+				color: #0f172a;
+			}
+			.card a {
+				color: #2563eb;
+				text-decoration: none;
+			}
+			.card a:hover,
+			.card a:focus {
+				text-decoration: underline;
+			}
+		</style>
 	</body>
 </html>

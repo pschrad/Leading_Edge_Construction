@@ -1,5 +1,5 @@
 ---
-import { Image } from 'astro:assets';
+import heroFallback from '../assets/clean.jpeg';
 import type { CollectionEntry } from 'astro:content';
 import BaseHead from '../components/BaseHead.astro';
 import Footer from '../components/Footer.astro';
@@ -9,6 +9,7 @@ import Header from '../components/Header.astro';
 type Props = CollectionEntry<'blog'>['data'];
 
 const { title, description, pubDate, updatedDate, heroImage } = Astro.props;
+const heroSrc = heroImage ? Astro.resolve(heroImage) : heroFallback.src;
 ---
 
 <html lang="en">
@@ -23,12 +24,15 @@ const { title, description, pubDate, updatedDate, heroImage } = Astro.props;
 			.hero-image {
 				width: 100%;
 			}
-			.hero-image img {
-				display: block;
-				margin: 0 auto;
-				border-radius: 12px;
-				box-shadow: var(--box-shadow);
-			}
+			.hero-image {
+  width: 100%;
+  min-height: 320px;
+  background-size: cover;
+  background-position: center;
+  border-radius: 12px;
+  box-shadow: var(--box-shadow);
+}
+
 			.prose {
 				width: 720px;
 				max-width: calc(100% - 2em);
@@ -59,9 +63,13 @@ const { title, description, pubDate, updatedDate, heroImage } = Astro.props;
 		<Header />
 		<main>
 			<article>
-				<div class="hero-image">
-					{heroImage && <Image width={1020} height={510} src={heroImage} alt="" />}
-				</div>
+				<div
+  					class="hero-image"
+  					style={`background-image: url(${heroSrc});`}
+  					role="img"
+  					aria-label={title}
+				/>
+
 				<div class="prose">
 					<div class="title">
 						<div class="date">
