@@ -524,9 +524,12 @@ import sharedBackground from '../assets/new-turf-installation.jpg';
 				}
 			}
 			@media (max-width: 640px) {
+				.wrap {
+					width: min(1120px, 88vw);
+				}
 				.hero__overlay {
-					gap: 3rem;
-					padding: 4rem 0 3.5rem;
+					gap: 3.5rem;
+					padding: 5rem 0 4.25rem;
 				}
 				.hero__top {
 					align-items: center;
@@ -538,6 +541,15 @@ import sharedBackground from '../assets/new-turf-installation.jpg';
 				}
 				.hero__cta {
 					align-self: center;
+				}
+				.hero__content {
+					gap: 1.75rem;
+				}
+				.cta {
+					padding: 4.5rem 0 6rem;
+				}
+				.cta__inner {
+					gap: 2.5rem;
 				}
 			}
 		</style>
