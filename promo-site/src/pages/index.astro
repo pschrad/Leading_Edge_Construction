@@ -16,15 +16,6 @@ import sharedBackground from '../assets/new-turf-installation.jpg';
 		<main class="home">
 			<section class="hero">
 				<div class="hero__overlay">
-					<div class="hero__top wrap">
-						<ul class="hero__social">
-							<li><a href="https://instagram.com" rel="noreferrer" target="_blank">Instagram</a></li>
-							<li><a href="https://facebook.com" rel="noreferrer" target="_blank">Facebook</a></li>
-							<li><a href="https://pinterest.com" rel="noreferrer" target="_blank">Pinterest</a></li>
-							<li><a href="https://tiktok.com" rel="noreferrer" target="_blank">TikTok</a></li>
-						</ul>
-						
-					</div>
 					<div class="hero__content wrap">
 					<p class="hero__eyebrow">Annapolis &amp; Chesapeake Bay outdoor pros</p>
 					<h1>Custom turf, pools, and backyard escapes built to last</h1>
@@ -191,49 +182,8 @@ import sharedBackground from '../assets/new-turf-installation.jpg';
 				z-index: 1;
 				display: flex;
 				flex-direction: column;
-				gap: clamp(4rem, 10vh, 6rem);
+				gap: clamp(3.5rem, 9vh, 5.5rem);
 				padding: clamp(4rem, 12vh, 6rem) 0 clamp(3rem, 10vh, 5rem);
-			}
-			.hero__top {
-				display: flex;
-				justify-content: space-between;
-				align-items: center;
-				gap: 2rem;
-				color: rgba(255, 255, 255, 0.8);
-			}
-			.hero__social {
-				list-style: none;
-				margin: 0;
-				padding: 0;
-				display: flex;
-				gap: 1.25rem;
-				font-weight: 600;
-				letter-spacing: 0.08em;
-				text-transform: uppercase;
-			}
-			.hero__social a {
-				color: rgba(255, 255, 255, 0.75);
-				text-decoration: none;
-				font-size: 0.75rem;
-			}
-			.hero__social a:hover {
-				color: #ffffff;
-			}
-			.hero__cta {
-				display: inline-flex;
-				align-items: center;
-				justify-content: center;
-				padding: 0.65rem 1.8rem;
-				border-radius: 999px;
-				border: 2px solid rgba(255, 255, 255, 0.7);
-				color: #ffffff;
-				text-decoration: none;
-				font-weight: 600;
-				transition: background 150ms ease, border-color 150ms ease;
-			}
-			.hero__cta:hover {
-				background: rgba(255, 255, 255, 0.12);
-				border-color: #ffffff;
 			}
 			.hero__content {
 				display: grid;
@@ -515,13 +465,7 @@ import sharedBackground from '../assets/new-turf-installation.jpg';
 				}
 			}
 			@media (max-width: 960px) {
-				.hero__top {
-					flex-direction: column;
-					align-items: flex-start;
-				}
-				.hero__cta {
-					align-self: flex-end;
-				}
+				
 			}
 			@media (max-width: 640px) {
 				.wrap {
@@ -530,17 +474,6 @@ import sharedBackground from '../assets/new-turf-installation.jpg';
 				.hero__overlay {
 					gap: 3.5rem;
 					padding: 5rem 0 4.25rem;
-				}
-				.hero__top {
-					align-items: center;
-					text-align: center;
-				}
-				.hero__social {
-					flex-wrap: wrap;
-					justify-content: center;
-				}
-				.hero__cta {
-					align-self: center;
 				}
 				.hero__content {
 					gap: 1.75rem;

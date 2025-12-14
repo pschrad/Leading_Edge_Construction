@@ -24,6 +24,12 @@ const today = new Date();
 				<a href="mailto:leadingedgeavelar@gmail.com">leadingedgeavelar@gmail.com</a>
 				<a href="/privacy">Privacy</a>
 			</div>
+			<div class="footer__social" aria-label="Social media">
+				<a href="https://instagram.com" rel="noreferrer" target="_blank">Instagram</a>
+				<a href="https://facebook.com" rel="noreferrer" target="_blank">Facebook</a>
+				<a href="https://pinterest.com" rel="noreferrer" target="_blank">Pinterest</a>
+				<a href="https://tiktok.com" rel="noreferrer" target="_blank">TikTok</a>
+			</div>
 		</div>
 	</div>
 </footer>
@@ -68,19 +74,22 @@ const today = new Date();
 		margin: 0;
 		max-width: 40rem;
 	}
-	.footer__links {
+	.footer__links,
+	.footer__social {
 		display: flex;
 		flex-wrap: wrap;
 		gap: 1.5rem;
 		font-weight: 600;
 	}
-	.footer__links a {
+	.footer__links a,
+	.footer__social a {
 		color: #fdf9f4;
 		text-decoration: none;
 		border-bottom: 1px solid transparent;
 		padding-bottom: 0.2rem;
 	}
-	.footer__links a:hover {
+	.footer__links a:hover,
+	.footer__social a:hover {
 		border-bottom-color: rgba(253, 249, 244, 0.6);
 	}
 	@media (max-width: 640px) {
