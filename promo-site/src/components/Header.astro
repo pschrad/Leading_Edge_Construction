@@ -184,45 +184,28 @@ const isOverlay = Astro.url.pathname === '/' || Astro.url.pathname.startsWith('/
 	}
 	@media (max-width: 640px) {
 		.nav {
-			flex-direction: column;
+			flex-wrap: wrap;
 			align-items: center;
 			gap: 0.75rem;
-			padding: 0.75rem 0 0.5rem;
-		}
-		.brand {
-			justify-content: center;
 		}
 		.nav__links {
-			order: 0;
+			order: 3;
 			width: 100%;
-			align-items: center;
-			justify-content: center;
-			gap: 0.85rem;
-			row-gap: 0.5rem;
-			text-align: center;
-			border-top: none;
-			padding-top: 0;
-			padding-bottom: 0.25rem;
+			flex-wrap: nowrap;
+			overflow-x: auto;
+			gap: 1rem;
+			padding: 0.25rem 0 0.35rem;
+			border-top: 1px solid rgba(160, 111, 42, 0.18);
+			justify-content: flex-start;
+			scrollbar-width: none;
 		}
-		.nav__links a {
-			font-size: 0.95rem;
+		.nav__links::-webkit-scrollbar {
+			display: none;
 		}
 		.nav__cta {
 			width: 100%;
 			text-align: center;
 			justify-content: center;
-		}
-	}
-	@media (max-width: 520px) {
-		.nav__links {
-			flex-direction: column;
-			align-items: center;
-			text-align: center;
-		}
-		.nav__cta {
-			width: 100%;
-			justify-content: center;
-			text-align: center;
 		}
 	}
 </style>
